@@ -27,7 +27,7 @@ pub enum Error {
     #[error("IO")]
     IO(#[from] io::Error),
     #[error("csv")]
-    CSV(#[from] csv::Error),
+    Csv(#[from] csv::Error),
     #[error("{0}")]
     Custom(&'static str),
     #[error("mpsc::sender")]

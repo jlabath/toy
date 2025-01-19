@@ -19,7 +19,7 @@ impl Account {
     /// Constructs new account with the given client_id.
     pub fn new(client_id: u16) -> Self {
         Account {
-            client_id: client_id,
+            client_id,
             available: Decimal::ZERO,
             held: Decimal::ZERO,
             locked: false,
@@ -84,7 +84,7 @@ impl Account {
         let old_tx = self
             .tx_storage
             .get_mut(&tx.transaction_id)
-            .ok_or_else(|| Error::TxNonExistant)?;
+            .ok_or(Error::TxNonExistant)?;
         //attempt to set state on tx
         old_tx.dispute()?;
         let amount = old_tx.get_amount()?;
@@ -108,7 +108,7 @@ impl Account {
         let old_tx = self
             .tx_storage
             .get_mut(&tx.transaction_id)
-            .ok_or_else(|| Error::TxNonExistant)?;
+            .ok_or(Error::TxNonExistant)?;
         //attempt to set state on tx
         old_tx.resolve()?;
         let amount = old_tx.get_amount()?;
@@ -132,7 +132,7 @@ impl Account {
         let old_tx = self
             .tx_storage
             .get_mut(&tx.transaction_id)
-            .ok_or_else(|| Error::TxNonExistant)?;
+            .ok_or(Error::TxNonExistant)?;
         //attempt to set chargeback on tx
         old_tx.chargeback()?;
         match old_tx.typ {

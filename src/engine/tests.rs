@@ -2,7 +2,7 @@ use super::*;
 use rust_decimal::Decimal;
 
 #[tokio::test]
-async fn basic() {
+async fn engine_with_multiple_producers() {
     let (handle, ch) = start().await;
     let ch2 = ch.clone();
     let ch3 = ch.clone();

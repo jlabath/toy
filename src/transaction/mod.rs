@@ -50,11 +50,10 @@ impl Transaction {
 
     /// Returns true if the transaction is one of the two types.
     pub fn is_deposit_or_withdrawal(&self) -> bool {
-        match self.typ {
-            TransactionType::Deposit => true,
-            TransactionType::Withdrawal => true,
-            _ => false,
-        }
+        matches!(
+            self.typ,
+            TransactionType::Deposit | TransactionType::Withdrawal
+        )
     }
 
     //state machine functions

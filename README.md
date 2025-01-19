@@ -11,5 +11,5 @@ This was a tradeoff as I assumed that would be sufficient for this task, for dat
 an actual DB would be used to store the accounts and transactions. 
 
 Last I opted to use tokio runtime since the description was mentioning accepting inputs from several thousand csv files,
-and mpsc channel seemed like a natural fit for such task. There is a unittest with multiple consumers that demonstrates the scenario.
+and mpsc channel seemed like a natural fit for such task. There is a unittest with multiple producers that demonstrates the scenario.
 Using tokio might have been an overkill because in the end there are only 3 different threads of execution in the final program, but if the app ever got bigger (e.g. talking to DB) async IO would be the way to go.
